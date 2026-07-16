@@ -649,3 +649,56 @@ footer p {
     transition: none;
   }
 }
+
+/* ---------- motion pass 2026-07-16 (find-animation-opportunities audit) ---------- */
+
+/* Press feedback: buttons + platform cards acknowledge the tap (160ms budget) */
+.btn:active {
+  transform: translateY(0) scale(0.97);
+}
+.find-card:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* One-time hero entrance: lockup -> kicker -> title -> sub -> CTAs, 70ms stagger */
+  .hero-lockup,
+  .hero .kicker,
+  .hero h1,
+  .hero-sub,
+  .hero-ctas {
+    animation: hero-in 0.7s cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+  .hero .kicker { animation-delay: 0.07s; }
+  .hero h1 { animation-delay: 0.14s; }
+  .hero-sub { animation-delay: 0.21s; }
+  .hero-ctas { animation-delay: 0.28s; }
+
+  @keyframes hero-in {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* "Coming Soon" dot breathes — the one live element on a pre-launch page */
+  .kicker::before {
+    animation: kick-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes kick-pulse {
+    0%, 100% { box-shadow: 0 0 0 3px var(--gold-dim); }
+    50% { box-shadow: 0 0 0 7px rgba(231, 174, 94, 0); }
+  }
+
+  /* Polaroid settles onto the table as it reveals (heritage centerpiece) */
+  .polaroid-wrap.reveal .polaroid {
+    transform: rotate(-5deg) scale(0.98);
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
+  }
+  .polaroid-wrap.reveal.in-view .polaroid {
+    transform: rotate(-2deg) scale(1);
+  }
+
+  /* Brother cards enter as a wave, not a block (80ms stagger) */
+  .brothers-grid .brother-card.reveal:nth-child(2) { transition-delay: 0.08s; }
+  .brothers-grid .brother-card.reveal:nth-child(3) { transition-delay: 0.16s; }
+  .brothers-grid .brother-card.reveal:nth-child(4) { transition-delay: 0.24s; }
+}
