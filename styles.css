@@ -702,3 +702,95 @@ footer p {
   .brothers-grid .brother-card.reveal:nth-child(3) { transition-delay: 0.16s; }
   .brothers-grid .brother-card.reveal:nth-child(4) { transition-delay: 0.24s; }
 }
+
+/* ---------- episodes ---------- */
+
+.episodes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+@media (max-width: 760px) {
+  .episodes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.episode-card {
+  display: block;
+  background: var(--bg-raised);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.episode-card:hover,
+.episode-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--hairline-gold);
+}
+
+.episode-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(160deg, #1c1a16, #0f0e0c);
+  overflow: hidden;
+}
+
+.episode-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.episode-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  background: rgba(11, 11, 12, 0.35);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.episode-card:hover .episode-play,
+.episode-card:focus-visible .episode-play {
+  opacity: 1;
+}
+
+.episode-play svg {
+  width: 56px;
+  height: 56px;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.6));
+}
+
+.episode-body {
+  padding: 1.2rem 1.3rem 1.4rem;
+}
+
+.episode-title {
+  font-family: var(--serif-display);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.6rem;
+}
+
+.episode-meta {
+  color: var(--muted-dim);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.episodes-note {
+  text-align: center;
+  margin-top: clamp(1.8rem, 4vw, 2.4rem);
+}

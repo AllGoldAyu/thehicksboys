@@ -68,6 +68,6 @@
     tone(930, 0.05, 0.09, "sine", 0.04);
   }
   document.addEventListener("pointerdown", function (e) {
-    if (e.target.closest(".btn-primary, .find-card")) goldTap();
+    if (e.target.closest(".btn-primary, .find-card, .episode-card")) goldTap();
   }, { passive: true });
 })();
